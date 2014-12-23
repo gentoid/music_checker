@@ -1,0 +1,24 @@
+<:Title>
+    Settings
+
+<:Body>
+    <h1>Settings</h1>
+    <h2>Music folders</h2>
+    <table class="table">
+        {{ page._music_paths.each do |path| }}
+            <tr>
+                <td colspan="2"><p>{{ path._name }}</p></td>
+                <td><span e-click="delete_path(:'_music_paths', path)" class="btn btn-danger">Delete</span></td>
+            </tr>
+        {{ end }}
+        <tr>
+            <td><input class="form-control" type="text" value="{{ page._new_music_path }}" placeholder="Add music folder">
+                {{ page._list.to_a.map { |i| i[:basename] } }}</td>
+            <td><span class="btn btn-success" e-click="add_path(:'_music_paths')">Add</span></td>
+            <td><span class="btn btn-danger" e-click="page._new_music_path = ''">Clear</span></td>
+        </tr>
+    </table>
+    <h2>Download music folders</h2>
+    {{ todo.each do |f| }}
+        <p>{{ f.name }}</p>
+    {{ end }}
